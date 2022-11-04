@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8" />
+	<title>Current Account</title>
+    <link rel="stylesheet" type="text/css" href="https://actionai.github.io/docs/demo/common/style.css"/>
+	<meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+	<script>
+        let timeout = 3600000; // 1 hour in ms
+        window.onload = async function () {
+            load();
+		    loadd();
+            setInterval(load, timeout)   
+            setInterval(loadd, timeout)			
+        }
+
+        async function load() {
+            var response = await fetch("https://bankinginfo.azurewebsites.net/api/info/accounts");
+
+            var table = await response.text();
+
+            const element = document.getElementById("data");
+
+            element.innerHTML = table;
+        }
+		
+		async function loadd() {
+            var response = await fetch("https://bankinginfo.azurewebsites.net/api/info/entities");
+
+            var table = await response.text();
+
+            const element = document.getElementById("data2");
+
+            element.innerHTML = table;
+        }
+    </script>
+    </script>
+</head>
+<body>
+<div class="container">
+  <div class="row">
+    <div class="col-sm-6" style="float:left;overflow-y: auto; height: 100vh;">
+	<div id="data"></div>
+	</div>
+    <div class="col-sm-6" style="float:left;overflow-y: auto; height: 100vh;">
+	<div style="padding-left:50px;" id="data2"></div></div>
+  </div>
+  
+</div>
+
+    
+</body>
+</html>
